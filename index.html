@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Chúc thi tốt 🎓</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Lato', sans-serif;
+      background-color: #a9ccf1;
+      overflow: hidden;
+    }
+
+    @keyframes shoot {
+  0% {
+    opacity: 1;
+    transform: translateX(0) translateY(0) rotate(45deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(300px) translateY(300px) rotate(45deg);
+  }
+}
+
+    /* NỀN particles */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    /* PARALLAX STARS */
+    #stars, #stars2, #stars3 {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: transparent url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="2" height="2"><rect width="2" height="2" fill="%23ffffff"/></svg>') repeat;
+      z-index: 1;
+      opacity: 0.2;
+    }
+
+    #stars2 {
+      background-size: 3px 3px;
+      animation: move-stars 120s linear infinite;
+      opacity: 0.15;
+    }
+
+    #stars3 {
+      background-size: 4px 4px;
+      animation: move-stars 240s linear infinite;
+      opacity: 0.1;
+    }
+
+    #stars {
+      animation: move-stars 60s linear infinite;
+    }
+
+    @keyframes move-stars {
+      from { transform: translateY(0); }
+      to { transform: translateY(-1000px); }
+    }
+
+    /* NỘI DUNG TRANG */
+    .page {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .page.active {
+      display: flex;
+    }
+
+    .flicker {
+      font-size: 48px;
+      font-weight: bold;
+      color: #eb0707;
+      animation: flicker 1s infinite alternate;
+    }
+
+    .shake {
+      font-size: 48px;
+      font-weight: bold;
+      animation: shake 0.5s infinite;
+      color: #af52b8;
+    }
+
+    .final-text {
+      font-size: 36px;
+      margin-top: 20px;
+      color: #00ff66;
+      font-weight: bold;
+    }
+
+    .gif {
+      max-width: 300px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgb(167, 213, 167);
+    }
+
+  .shooting-star {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 2px;
+    height: 100px;
+    background: linear-gradient(-45deg, white, rgba(255,255,255,0));
+    transform: rotate(-45deg);
+    opacity: 0;
+    animation: shoot 1.2s ease-out forwards;
+    z-index: 2;
+    pointer-events: none;
+  }
+    .hint-text {
+    position: fixed;
+    top: 10px;
+    left: 15px;
+    font-size: 16px;
+    color: rgb(107, 123, 182);
+    font-style: italic;
+    z-index: 3;
+    user-select: none;
+    pointer-events: none;
+  }
+
+@keyframes shoot {
+  0% {
+    transform: translate(0, 0) rotate(-45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(500px, 500px) rotate(-45deg);
+    opacity: 0;
+  }
+}
+
+
+
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+      20%, 22%, 24%, 55% { opacity: 0; }
+    }
+
+    @keyframes shake {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(1px, -1px) rotate(-1deg); }
+      50% { transform: translate(-1px, 1px) rotate(1deg); }
+      75% { transform: translate(1px, 1px) rotate(0deg); }
+      100% { transform: translate(0, -1px) rotate(-1deg); }
+    }
+
+    #title {
+      font-size: 40px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    #title span {
+      display: block;
+    }
+
+    .music-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 15px;
+      font-size: 16px;
+      background-color: #00ffff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #000;
+      font-weight: bold;
+      z-index: 3;
+    }
+
+    .music-btn:hover {
+      background-color: #00cccc;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NỀN -->
+  <div id="particles-js"></div>
+  <div id="stars"></div>
+  <div id="stars2"></div>
+  <div id="stars3"></div>
+
+  <!-- CÁC TRANG -->
+  <div id="page1" class="page active">
+    <div class="flicker">Chúc em bé thi tốt</div>
+  </div>
+
+  <div id="page2" class="page">
+    <div class="shake">You'll smash it hehe just stay calm uwu!</div>
+  </div>
+
+  <div id="page3" class="page">
+    <img class="gif" src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExYTR6OTdueGI2NGFzMXp0a3EzdGlpZ3NvamE5amkxenkyNnl3ZzAxayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/f9EmXxglhdhAj1bo28/giphy.gif" alt="Congrats GIF">
+    <div class="final-text">Hard work pays off</div>
+  </div>
+
+<!-- Trang 4 -->
+<div id="page4" class="page">
+  <img class="gif" src="https://media4.giphy.com/media/V7N07vHimHciXFhdSg/giphy.gif" alt="Lucky Penguin">
+  <div class="final-text">You're lucky and ready! Go shine! ✨🐧</div>
+</div>
+  <div class="hint-text">Ấn space để chuyển</div>
+
+  <!-- Nút âm thanh -->
+  <button class="music-btn" onclick="toggleMusic()">🔊 Bật / Tắt nhạc</button>
+
+  <!-- Nhạc -->
+  <audio id="bg-music" loop>
+    <source src="nothing.mp3" type="audio/mpeg">
+    Trình duyệt không hỗ trợ audio.
+  </audio>
+
+  <script>
+    // Khởi tạo particles.js
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 60 },
+        color: { value: "#ffffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5 },
+        size: { value: 3, random: true },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#ffffff",
+          opacity: 0.4,
+          width: 1
+        },
+        move: { enable: true, speed: 2 }
+      },
+      interactivity: {
+        events: {
+          onhover: { enable: true, mode: "grab" },
+          onclick: { enable: true, mode: "push" }
+        },
+        modes: {
+          grab: { distance: 140, line_linked: { opacity: 1 } },
+          push: { particles_nb: 4 }
+        }
+      },
+      retina_detect: true
+    });
+
+    // Logic nhạc + chuyển trang
+    const music = document.getElementById("bg-music");
+    const pages = [
+      document.getElementById("page1"),
+      document.getElementById("page2"),
+      document.getElementById("page3"),
+      document.getElementById("page4")
+    ];
+    let currentPage = 0;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.body.addEventListener("click", () => {
+        if (music.paused) {
+          music.play();
+        }
+      }, { once: true });
+    });
+
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+
+    document.addEventListener("keydown", function(event) {
+      if (event.code === "Space") {
+        pages[currentPage].classList.remove("active");
+        currentPage = (currentPage + 1) % pages.length;
+        pages[currentPage].classList.add("active");
+      }
+    });
+function createShootingStar() {
+  const star = document.createElement('div');
+  star.classList.add('shooting-star');
+
+  // Xuất hiện từ bất kỳ vị trí bên trái (trên cùng 60% màn hình)
+  const startX = Math.random() * (window.innerWidth * 0.4);
+  const startY = Math.random() * (window.innerHeight * 0.6);
+
+  star.style.left = `${startX}px`;
+  star.style.top = `${startY}px`;
+
+  document.body.appendChild(star);
+
+  setTimeout(() => star.remove(), 1500); // Xoá sau khi animation kết thúc
+}
+
+function launchShootingStars() {
+  setInterval(() => {
+    createShootingStar();
+  }, 1500 + Math.random() * 1500); // Rơi mỗi 1.5–3 giây
+}
+
+document.addEventListener("DOMContentLoaded", launchShootingStars);
+
+  </script>
+
+  
+</body>
+</html>
