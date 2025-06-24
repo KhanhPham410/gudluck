@@ -95,7 +95,7 @@
     .flicker {
       font-size: 48px;
       font-weight: bold;
-      color: #eb0707;
+      color: #e483b5;
       animation: flicker 1s infinite alternate;
     }
 
@@ -103,13 +103,13 @@
       font-size: 48px;
       font-weight: bold;
       animation: shake 0.5s infinite;
-      color: #af52b8;
+      color: #56d988;
     }
 
     .final-text {
       font-size: 36px;
       margin-top: 20px;
-      color: #00ff66;
+      color: #379950;
       font-weight: bold;
     }
 
@@ -155,6 +155,23 @@
   }
 }
 
+.snowflake {
+  position: fixed;
+  top: -10px;
+  color: white;
+  user-select: none;
+  pointer-events: none;
+  z-index: 2;
+  animation-name: fall;
+  animation-timing-function: linear;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+  }
+}
+
 
 
     @keyframes flicker {
@@ -186,7 +203,7 @@
       right: 20px;
       padding: 10px 15px;
       font-size: 16px;
-      background-color: #00ffff;
+      background-color: #78a5a54a;
       border: none;
       border-radius: 8px;
       cursor: pointer;
@@ -196,8 +213,43 @@
     }
 
     .music-btn:hover {
-      background-color: #00cccc;
+      background-color: #add8d8;
     }
+
+.circle-img {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+  transition: opacity 0.5s ease-in-out;
+}
+
+.rotating {
+  animation: spin 8s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.floating-msg {
+  position: fixed;
+  bottom: 0;
+  font-size: 20px;
+  color: rgba(162, 183, 215, 0.733);
+  animation: floatUp 4s ease-out forwards;
+  z-index: 5;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-200px); opacity: 0; }
+}
+
+
   </style>
 </head>
 <body>
@@ -225,8 +277,18 @@
 <!-- Trang 4 -->
 <div id="page4" class="page">
   <img class="gif" src="https://media4.giphy.com/media/V7N07vHimHciXFhdSg/giphy.gif" alt="Lucky Penguin">
-  <div class="final-text">You're lucky and ready! Go shine! ✨🐧</div>
+  <div class="final-text">May mắn may mắn may mắnnnn
+  </div>
 </div>
+
+<!--trang5-->
+<div id="page5" class="page">
+  <img id="slideshow" class="circle-img rotating" src="ngo1.jpg" alt="Chuyển ảnh">
+  <div class="final-text">Em bé của anh siu siu siu giỏiiii ✨</div>
+</div>
+
+
+
   <div class="hint-text">Ấn space để chuyển</div>
 
   <!-- Nút âm thanh -->
@@ -275,7 +337,8 @@
       document.getElementById("page1"),
       document.getElementById("page2"),
       document.getElementById("page3"),
-      document.getElementById("page4")
+      document.getElementById("page4"),
+      document.getElementById("page5")
     ];
     let currentPage = 0;
 
@@ -326,8 +389,54 @@ function launchShootingStars() {
 
 document.addEventListener("DOMContentLoaded", launchShootingStars);
 
+const slideImages = ["ngo1.jpg", "ngo2.jpg", "ngo3.jpg"];
+let imgIndex = 0;
+const slideshow = document.getElementById("slideshow");
+
+setInterval(() => {
+  imgIndex = (imgIndex + 1) % slideImages.length;
+  slideshow.style.opacity = 0;
+
+  setTimeout(() => {
+    slideshow.src = slideImages[imgIndex];
+    slideshow.style.opacity = 1;
+  }, 400);
+}, 3000); // đổi ảnh mỗi 3 giây
+
+function floatMessage(msg) {
+  const bubble = document.createElement("div");
+  bubble.className = "floating-msg";
+  bubble.innerText = msg;
+  bubble.style.left = `${Math.random() * 80 + 10}%`;
+  document.body.appendChild(bubble);
+  setTimeout(() => bubble.remove(), 4000);
+}
+
+setInterval(() => {
+  const msgs = ["Lụmmmm!", "Em bé cố lên 💪", "Gần đến đích rồi!", "Hít thở, ún nước, bìn tĩn là lụm", "Sẽ oki thuiii", "hong looooo", "Có Ben Xùuuu", "Anh yêu vợ iuuuu", "Moaaaaa"
+    ,"thi xong anh thưởnggg", "anh ôm iu mòooo", "Cục cưng iuuuu"
+  ];
+  const randMsg = msgs[Math.floor(Math.random() * msgs.length)];
+  floatMessage(randMsg);
+}, 500);
+
+
   </script>
 
-  
+  <script>
+function createSnowflake() {
+  const snowflake = document.createElement("div");
+  snowflake.className = "snowflake";
+  snowflake.innerHTML = "❄";
+  snowflake.style.left = Math.random() * window.innerWidth + "px";
+  snowflake.style.animationDuration = 2 + Math.random() * 3 + "s";
+  snowflake.style.opacity = Math.random();
+  snowflake.style.fontSize = 12 + Math.random() * 20 + "px";
+  document.body.appendChild(snowflake);
+  setTimeout(() => snowflake.remove(), 5000);
+}
+setInterval(createSnowflake, 200);
+</script>
+
 </body>
 </html>
